@@ -19,7 +19,7 @@ public class Alunos implements Serializable{
 	private Long id;
 	
 	@NotEmpty
-	private String nome;
+	private String nome; 
 	
 	@NotEmpty
 	private String celular;
