@@ -9,9 +9,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Cursos implements  Serializable{
+public class Tarefas implements  Serializable{
 	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
@@ -20,13 +20,21 @@ public class Cursos implements  Serializable{
 	@NotEmpty
 	private String nome;
 	
-	@NotEmpty
 	private String descricao;
 	
-	@NotEmpty
-	private String tipo;
+	private String url_form;
 	
-	private String id_prof;
+	private String id_curso;
+	
+
+
+	public String getUrl_form() {
+		return url_form;
+	}
+
+	public void setUrl_form(String url_form) {
+		this.url_form = url_form;
+	}
 
 	public Long getId() {
 		return id;
@@ -52,21 +60,12 @@ public class Cursos implements  Serializable{
 		this.descricao = descricao;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getId_curso() {
+		return id_curso;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setId_curso(String id_curso) {
+		this.id_curso = id_curso;
 	}
-
-	public String getId_prof() {
-		return id_prof;
-	}
-
-	public void setId_prof(String id_prof) {
-		this.id_prof = id_prof;
-	}
-	
 
 }

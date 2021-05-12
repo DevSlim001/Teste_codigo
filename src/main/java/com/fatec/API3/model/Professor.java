@@ -32,7 +32,6 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty
 	private String email;
 	
-	@NotEmpty
 	private String nomearquivo;
 	
 	/*Gets e Setters das colunas*/

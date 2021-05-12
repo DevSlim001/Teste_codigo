@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta charset="UTF-8">
+<title>NEDUC</title>
+
+<head>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="bootstrap/js//bootstrap.min.js"></script>
+</head>
+
+<div class="container" style="height: 410px; margin-top: 130px;">
+	<h3 style="text-align: center;">Cadastro Tarefas</h3>
+	<br>
+  		<div class="row">
+			 <div class="col-5" >
+			 	<form method="post" action="cadastrotarefa">
+			 	   <strong for="formGroupExampleInput" class="form-label">Nova Tarefa</strong>
+                 	<input type="text" class="form-control" style="width: 350px;" name="nome">
+                 	<br>
+                 	 <strong for="formGroupExampleInput" class="form-label">Descrição da Tarefa</strong>
+                 	<input type="text" class="form-control" style="width: 350px;" name="descricao">
+                 	<br>
+                 	<strong for="formGroupExampleInput" class="form-label">URL da Tarefa</strong>
+                 	<input type="text" class="form-control" style="width: 350px;" name="url_form">
+                 	<br>
+                 	<strong for="formGroupExampleInput" class="form-label">ID do Curso</strong>
+                 	<input type="text" class="form-control" style="width: 350px;" name="id_curso">
+                 	<br>
+                 	<button type="submit" class="btn btn-dark" style="width: 200px;">Cadastrar</button>
+			 	</form>
+			</div>
+	</div>
+</div>
+</html>
