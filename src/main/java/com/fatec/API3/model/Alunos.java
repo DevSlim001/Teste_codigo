@@ -1,6 +1,7 @@
 package com.fatec.API3.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
-public class Alunos implements Serializable{
+public class Alunos implements Serializable, UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +25,9 @@ public class Alunos implements Serializable{
 	
 	@NotEmpty
 	private String nome; 
+	
+	@NotEmpty
+	private String login;
 	
 	@NotEmpty
 	private String celular;
@@ -43,6 +51,15 @@ public class Alunos implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getNome() {
@@ -91,6 +108,48 @@ public class Alunos implements Serializable{
 
 	public void setNomearquivo(String nomearquivo) {
 		this.nomearquivo = nomearquivo;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	

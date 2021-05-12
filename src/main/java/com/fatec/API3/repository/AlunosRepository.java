@@ -9,6 +9,7 @@ import com.fatec.API3.model.Alunos;
 public interface AlunosRepository extends CrudRepository<Alunos, String>{
 	Alunos findByid(long id);
 	
+	Alunos findBylogin(String login);
 	
 	Optional<Alunos> findByemail(String email);
 	
