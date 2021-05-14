@@ -17,6 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,7 +68,9 @@ public class AlunosController {
 	public String cadastroalunop(Alunos alunos){
 		boolean existe = AR.existsByemail(alunos.getEmail());
 		if(existe) {return "redirect:cadastroluno";}
-		System.out.print("Olá");
+		String senha = alunos.getSenha();
+		String senhaenc = new BCryptPasswordEncoder().encode(senha);
+		alunos.setSenha(senhaenc);
 	//Colocando propriedades para o envio de email.
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */
@@ -120,7 +123,21 @@ public class AlunosController {
 		return "loginaluno";
 	}
 	
-	
+	@PostMapping("/loginaluno")
+	public String loginalunop(Alunos alunos) throws Exception{
+		
+		Alunos aluno = AR.findByemail(alunos.getEmail());
+		if (aluno == null) {
+			//colocar uma mensagem que não foi achado o email.
+			return "redirect:Index";
+		}
+		
+		if(!aluno.getSenha().equals(alunos.getSenha())) {
+			//colocar que a senha tá errada.
+			return "redirect:loginaluno";}
+		
+		return "redirect:homealuno";
+	}
 	
 	@GetMapping("/recuperarsenha")
 	public String recuperarsenha(){

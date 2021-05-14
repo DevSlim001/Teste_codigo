@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1.0">
@@ -53,11 +54,13 @@
 
 
     <div class="corpo">
-        <form method = "Post">
+        <form  th:action="@{/loginaluno}" method = "Post">
             <h2>LOGIN ALUNO</h2>
-            <input type="text" value="" name="email" placeholder="email" id="">
-            <input type="password" value="" name="senha" placeholder="senha" id="">
+            
+            <input type="text"  name="email" placeholder="email" id="email">
+            <input type="password" name="senha" placeholder="senha" id="senha">
             <div class="container-cad"></div>
+            <button type="submit" class="btn">Log in</button>
             <input class="btn" type="submit" name="" value="entrar">
             <h5>Esqueceu sua senha?<a href="recuperarsenha"> Recuperar senha</a></h5>
             <h5>Ainda não possui uma conta?<a href="cadastroaluno"> Cadastre-se</a></h5>
