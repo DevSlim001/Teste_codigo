@@ -125,7 +125,7 @@ public class Alunos implements Serializable, UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.login;
+		return this.email;
 	}
 
 	@Override

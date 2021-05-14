@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -68,7 +67,7 @@ public class AlunosController {
 	public String cadastroalunop(Alunos alunos){
 		boolean existe = AR.existsByemail(alunos.getEmail());
 		if(existe) {return "redirect:cadastroluno";}
-	
+		System.out.print("Olá");
 	//Colocando propriedades para o envio de email.
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */
@@ -121,19 +120,7 @@ public class AlunosController {
 		return "loginaluno";
 	}
 	
-	@PostMapping("/loginaluno")
-	public String loginalunop(Alunos alunos) throws Exception{
-		
-		Optional<Alunos> aluno = AR.findByemail(alunos.getEmail());
-		if (!aluno.isPresent()) {
-			return "redirect:loginaluno";
-		}
-		
-		if(!aluno.get().getSenha().equals(alunos.getSenha())) {
-			return "redirect:loginaluno";}
-		
-		return "redirect:homealuno";
-	}
+	
 	
 	@GetMapping("/recuperarsenha")
 	public String recuperarsenha(){
@@ -141,8 +128,8 @@ public class AlunosController {
 	} 
 	@PostMapping("/recuperarsenha")
 	public String recuperarsenhap(Alunos alunos){
-		Optional<Alunos> aluno = AR.findByemail(alunos.getEmail());
-		if (aluno.isPresent()) {
+		Alunos aluno = AR.findByemail(alunos.getEmail());
+		if (aluno != null) {
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */
 	    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -176,7 +163,7 @@ public class AlunosController {
 
 	      message.setRecipients(Message.RecipientType.TO, toUser);
 	      message.setSubject("Recuperação de senha Neduc");//Assunto
-	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + aluno.get().getSenha(); 
+	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + aluno.getSenha(); 
 	      message.setText(texto);
 	      /**Método para enviar a mensagem criada*/
 	      Transport.send(message);

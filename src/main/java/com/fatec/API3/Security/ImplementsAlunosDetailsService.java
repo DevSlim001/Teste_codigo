@@ -20,13 +20,13 @@ public class ImplementsAlunosDetailsService implements UserDetailsService {
 	private AlunosRepository AR;
 	
 	@Override
-	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		Alunos aluno = AR.findBylogin(login);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Alunos aluno = AR.findByemail(email);
 		
 		if(aluno == null){
 			throw new UsernameNotFoundException("Usuario não encontrado!");
 		}
-		return new User(aluno.getUsername(), aluno.getPassword(), true, true, true, true, aluno.getAuthorities());
+		return aluno;
 	}
 
 }
