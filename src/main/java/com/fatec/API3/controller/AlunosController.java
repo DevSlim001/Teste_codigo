@@ -55,12 +55,12 @@ public class AlunosController {
 	
 	@GetMapping("/homealuno")
 	public String homealuno(){
-		return "/Homealuno"; 
+		return "/aluno/homealuno"; 
 }
 	
 	@GetMapping("/cadastroaluno")
 	public String cadastroaluno(){
-		return "../cadastroaluno";
+		return "/cadastroaluno";
 	}
 	
 	@PostMapping("/cadastroaluno")
@@ -141,7 +141,7 @@ public class AlunosController {
 	
 	@GetMapping("/recuperarsenha")
 	public String recuperarsenha(){
-		return "../recuperarsenha";
+		return "/recuperarsenha";
 	} 
 	@PostMapping("/recuperarsenha")
 	public String recuperarsenhap(Alunos alunos){
@@ -195,7 +195,7 @@ public class AlunosController {
 	
 	@GetMapping("/tarefas")
 	public String tarefasaluno(){
-		return "../tarefas";
+		return "/tarefas";
 	}
 	
 	@PostMapping("/tarefas") 

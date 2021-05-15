@@ -28,17 +28,17 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorRepository PR;
 	
-	@GetMapping("../homeprofessor")
+	@GetMapping("/homeprofessor")
 	public String home(){
 		return "homeprofessor"; 
 	}
 	
-	@GetMapping("../loginprofessor")
+	@GetMapping("/loginprofessor")
 	public String login(){
 		return "loginprofessor"; 
 	}  
 	
-	@PostMapping("../loginprofessor")
+	@PostMapping("/loginprofessor")
 	public String loginprofessor(Professor professor) {
 		Optional<Professor> prof = PR.findByemail(professor.getEmail());
 		if (!prof.isPresent()) {
@@ -51,7 +51,7 @@ public class ProfessorController {
 		return "redirect:homeprofessor";
 	}
 	
-	@GetMapping("../cadastroprofessor")
+	@GetMapping("/cadastroprofessor")
 	public String cadastro(){
 		return "cadastroprofessor"; 
 	}  
