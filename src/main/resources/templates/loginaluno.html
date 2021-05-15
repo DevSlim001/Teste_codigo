@@ -56,11 +56,13 @@
     <div class="corpo">
         <form  th:action="@{/loginaluno}" method = "Post">
             <h2>LOGIN ALUNO</h2>
-            
+            <div th:if="${param.error}" class="alert alert-danger">
+                            Invalid username and password.
+                        </div>
             <input type="text"  name="email" placeholder="email" id="email">
             <input type="password" name="senha" placeholder="senha" id="senha">
             <div class="container-cad"></div>
-            <button type="submit" class="btn">Log in</button>
+            
             <input class="btn" type="submit" name="" value="entrar">
             <h5>Esqueceu sua senha?<a href="recuperarsenha"> Recuperar senha</a></h5>
             <h5>Ainda não possui uma conta?<a href="cadastroaluno"> Cadastre-se</a></h5>

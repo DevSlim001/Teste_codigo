@@ -23,14 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.GET,"/index")
+		.antMatchers(HttpMethod.GET,"/index", "/div")
 		.permitAll()
 		.antMatchers(HttpMethod.POST, "/loginaluno","/cadastroaluno","/cadastroprofessor","/recuperarsenha")
 		.permitAll()
 		.anyRequest().authenticated()
-		.and().formLogin()//*.loginPage("/loginaluno")
+		.and().formLogin()
+		.loginProcessingUrl("/loginaluno")
+		.loginPage("/loginaluno").defaultSuccessUrl("/homealuno", true).permitAll()
+        .usernameParameter("email")
+        .passwordParameter("senha")
 		.permitAll()
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index");
 	}
 	
 	

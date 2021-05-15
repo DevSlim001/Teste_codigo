@@ -134,7 +134,7 @@ public class AlunosController {
 		
 		if(!aluno.getSenha().equals(alunos.getSenha())) {
 			//colocar que a senha tá errada.
-			return "redirect:loginaluno";}
+			return "redirect:Index";}
 		
 		return "redirect:homealuno";
 	}
