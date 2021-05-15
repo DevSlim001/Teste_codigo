@@ -1,28 +1,77 @@
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/main.css"/>
 
-    <title>NESS - NEDUC</title>
+    <link rel="stylesheet" href="../css/main.css" />
+
+    <title>NEDUC</title>
+
+    <link rel="stylesheet" href="../static/css/chat.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
+    <!-- CHAT BAR BLOCK -->
+    <div class="chat-bar-collapsible">
+        <button id="chat-button" type="button" class="collapsible">Fale conosco
+            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+        </button>
+
+        <div class="content">
+            <div class="full-chat-block">
+                <!-- Message Container -->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!-- Messages -->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp"></h5>
+                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                        </div>
+
+                        <!-- User input box -->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <input id="textInput" class="input-box" type="text" name="msg"
+                                    placeholder="Tecle 'Enter' para enviar uma mensagem">
+                                <p></p>
+                            </div>
+
+                            <div class="chat-bar-icons">
+                                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                    onclick="heartButton()"></i>
+                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                    onclick="sendButton()"></i>
+                            </div>
+                        </div>
+
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 
     <!--- HEADER DO SITE --->
     <div id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand" href="index">
-                        <img src="/assets/ness-logo-website.svg" width="150px" class="img-fluid" />
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/ness-logo-website.svg" width="150px" class="img-fluid" />
                     </a>
                     <button 
                         class="navbar-toggler" 
@@ -43,12 +92,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contato</a>
                             </li>
-                            <div class="container-space"></div>
                             <li class="nav-item">
-                                <a class="nav-link" href="div">Entrar</a>
+                                <a class="nav-link" href="/help">Ajuda</a>
+                            </li>
+                            <div class="container-space2"></div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/div">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="divcad">Cadastrar-se</a>
+                                <a class="nav-link" href="/divcad">Cadastrar-se</a>
                             </li>
                         </ul>
                     </div>
@@ -73,7 +125,7 @@
                     <div class="container-text"></div>
                 </div>
                 <div class="col-md-6 align-self-center">
-                    <img src="/assets/Design sem nome (4).png" width="800px" class="img-fluid" />
+                    <img src="../assets/Design sem nome (4).png" width="800px" class="img-fluid" />
                 </div>
             </div>
         </div>
@@ -85,7 +137,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 order-md-1 order-2">
-                    <img src="/assets/sobre.png" class="img-fluid" />
+                    <img src="../assets/sobre.png" class="img-fluid" />
                 </div>
                 <div class="container-text"></div>
                 <div class="col-md-7 mb-md-0 mb-4 order-md-2 order-0">
@@ -112,7 +164,7 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <a href="#" class="destaque">
                         <div class="img-container mb-3">
-                            <img src="/assets/certificado (2).png" class="img-fluid">
+                            <img src="../assets/certificado (2).png" class="img-fluid">
                         </div>
                         <h5>CERTIFICADOS</h5>
                         <p class="mb-0">Emissão de certificados conforme seu progresso</p>
@@ -121,7 +173,7 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <a href="#" class="destaque">
                         <div class="img-container mb-3">
-                            <img src="/assets/pilula.png" class="img-fluid">
+                            <img src="../assets/pilula.png" class="img-fluid">
                         </div>
                         <h5>PÍLULAS</h5>
                         <p class="mb-0">Vídeos para impulsionar seu conhecimento</p>
@@ -130,7 +182,7 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <a href="#" class="destaque">
                         <div class="img-container mb-3">
-                            <img src="/assets/biblio.png" class="img-fluid">
+                            <img src="../assets/biblio.png" class="img-fluid">
                         </div>
                         <h5>BIBLIOTECA</h5>
                         <p class="mb-0">Bibliotecas de conteúdo dos seus cursos</p>
@@ -139,7 +191,7 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <a href="#" class="destaque">
                         <div class="img-container mb-3">
-                            <img src="/assets/destaq.png" class="img-fluid">
+                            <img src="../assets/destaq.png" class="img-fluid">
                         </div>
                         <h5>DESTAQUES</h5>
                         <p class="mb-0">Novidades e eventos para nossos alunos</p>
@@ -173,7 +225,7 @@
     <footer id="contato">
         <div class="container">
           <div class="email">
-            <img src="/assets/paperplane.svg" />
+            <img src="../assets/paperplane.svg" />
             <h2 class="title text-center">Fique por dentro das novidades</h2>
             <h4 class="subtitle text-center mb-4">
               Enviaremos todas as novidades sobre nossos cursos para você
@@ -193,7 +245,7 @@
                   type="submit"
                   class="btn btn-light button mb-3 d-md-inline d-block w-100"
                 >
-                  cadastre-se
+                  quero receber novidades
                 </button>
                 </div>
               </div>
@@ -208,19 +260,19 @@
                 <ul>
                   <li>
                     <a href="https://www.facebook.com/ness.health/" target="https://www.facebook.com/ness.health/">
-                        <img src="/assets/facebook.png" /></a>
+                        <img src="../assets/facebook.png" /></a>
                   </li>
                   <li>
                     <a href="https://www.instagram.com/ness.health/" target="https://www.instagram.com/ness.health/">
-                        <img src="/assets/instagram.png" /></a>
+                        <img src="../assets/instagram.png" /></a>
                   </li>
                   <li>
                     <a href="https://www.linkedin.com/company/ness-health/" target="https://www.linkedin.com/company/ness-health/">
-                        <img src="/assets/linkedin.png" /></a>
+                        <img src="../assets/linkedin.png" /></a>
                   </li>
                   <li>
                     <a href="https://www.youtube.com/channel/UCtR3U-Qmb1h2GE9w0Fe3NrA" target="https://www.youtube.com/channel/UCtR3U-Qmb1h2GE9w0Fe3NrA">
-                        <img src="/assets/youtube.png" /></a>
+                        <img src="../assets/youtube.png" /></a>
                   </li>
                 </ul>
               </div>
@@ -237,9 +289,14 @@
     integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" 
     crossorigin="anonymous">
     </script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
+    
+
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../static/scripts/responses.js"></script>
+<script src="../static/scripts/chat.js"></script>
 
 </html>

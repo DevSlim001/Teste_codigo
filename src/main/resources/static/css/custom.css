@@ -30,6 +30,10 @@ body, html {
     width: 480px;
 }
 
+.container-space2 {
+    width: 380px;
+}
+
 .space {
     height: 30px;
 }
@@ -169,3 +173,4 @@ body, html {
   #contato ul li img {
     max-height: 20px;
   }
+

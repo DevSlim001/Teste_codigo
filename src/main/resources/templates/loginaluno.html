@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/acesso/style.css">
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../acesso/style.css">
 
     <title>NEDUC - LOGINALUNO</title>
 
@@ -17,8 +16,8 @@
     <div id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand" href="index">
-                        <img src="/assets/ness-logo-website.svg" width="150px" class="img-fluid" />
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/ness-logo-website.svg" width="150px" class="img-fluid" />
                     </a>
                     <button 
                         class="navbar-toggler" 
@@ -34,7 +33,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/index">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contato</a>
@@ -54,18 +53,14 @@
 
 
     <div class="corpo">
-        <form  th:action="@{/loginaluno}" method = "Post">
+        <form th:action="@{/loginaluno}" method = "Post">
             <h2>LOGIN ALUNO</h2>
-            <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username and password.
-                        </div>
-            <input type="text"  name="email" placeholder="email" id="email">
+            <input type="text" name="email" placeholder="email" id="email">
             <input type="password" name="senha" placeholder="senha" id="senha">
             <div class="container-cad"></div>
-            
-            <input class="btn" type="submit" name="" value="entrar">
-            <h5>Esqueceu sua senha?<a href="recuperarsenha"> Recuperar senha</a></h5>
-            <h5>Ainda não possui uma conta?<a href="cadastroaluno"> Cadastre-se</a></h5>
+            <input type="submit" name="" value="entrar">
+            <h5>Ainda não possui uma conta?<a href="/cadastroaluno"> Cadastre-se</a></h5>
+            <h5><a href="/recuperarsenha">Esqueceu sua senha?</a></h5>
         </form>
     </div>
 
@@ -74,8 +69,8 @@
     integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" 
     crossorigin="anonymous">
     </script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

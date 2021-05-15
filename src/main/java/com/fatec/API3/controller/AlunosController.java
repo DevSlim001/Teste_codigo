@@ -40,7 +40,7 @@ public class AlunosController {
 	
 	@GetMapping("/index")
 	public String index(){
-		return "Index"; 
+		return "index"; 
 	}  
 	
 	@GetMapping("/divcad")
@@ -55,12 +55,12 @@ public class AlunosController {
 	
 	@GetMapping("/homealuno")
 	public String homealuno(){
-		return "homealuno"; 
+		return "/Homealuno"; 
 }
 	
 	@GetMapping("/cadastroaluno")
 	public String cadastroaluno(){
-		return "cadastroaluno";
+		return "../cadastroaluno";
 	}
 	
 	@PostMapping("/cadastroaluno")
@@ -120,7 +120,7 @@ public class AlunosController {
 	
 	@GetMapping("/loginaluno")
 	public String loginaluno(){
-		return "loginaluno";
+		return "/loginaluno";
 	}
 	
 	@PostMapping("/loginaluno")
@@ -129,19 +129,19 @@ public class AlunosController {
 		Alunos aluno = AR.findByemail(alunos.getEmail());
 		if (aluno == null) {
 			//colocar uma mensagem que não foi achado o email.
-			return "redirect:Index";
+			return "redirect:index";
 		}
 		
 		if(!aluno.getSenha().equals(alunos.getSenha())) {
 			//colocar que a senha tá errada.
-			return "redirect:Index";}
+			return "redirect:index";}
 		
-		return "redirect:homealuno";
+		return "redirect:Homealuno";
 	}
 	
 	@GetMapping("/recuperarsenha")
 	public String recuperarsenha(){
-		return "recuperarsenha";
+		return "../recuperarsenha";
 	} 
 	@PostMapping("/recuperarsenha")
 	public String recuperarsenhap(Alunos alunos){
@@ -195,7 +195,7 @@ public class AlunosController {
 	
 	@GetMapping("/tarefas")
 	public String tarefasaluno(){
-		return "tarefas";
+		return "../tarefas";
 	}
 	
 	@PostMapping("/tarefas") 
@@ -209,7 +209,7 @@ public class AlunosController {
 			alunos.setNomearquivo(String.valueOf(alunos.getId()) + arquivo.getOriginalFilename());
 			AR.save(alunos);
 		}
-		return"redirect:homealuno";
+		return"redirect:Homealuno";
 	
 }
 }
