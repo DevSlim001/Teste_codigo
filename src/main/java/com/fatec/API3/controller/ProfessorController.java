@@ -28,14 +28,16 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorRepository PR;
 	
+	
+	
 	@GetMapping("/homeprofessor")
 	public String home(){
-		return "homeprofessor"; 
+		return "/home/homeprofessor"; 
 	}
 	
 	@GetMapping("/loginprofessor")
 	public String login(){
-		return "loginprofessor"; 
+		return "/entrada/loginprofessor"; 
 	}  
 	
 	@PostMapping("/loginprofessor")
@@ -53,7 +55,7 @@ public class ProfessorController {
 	
 	@GetMapping("/cadastroprofessor")
 	public String cadastro(){
-		return "cadastroprofessor"; 
+		return "/entrada/cadastroprofessor"; 
 	}  
 
 	@PostMapping("/cadastroprofessor")

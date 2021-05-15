@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../acesso/style.css">
 
-    <title>NEDUC - LOGIN GESTOR</title>
+    <title>NEDUC - RECUPERAR SENHA</title>
 
 </head>
 <body>
@@ -33,7 +33,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/index">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contato</a>
@@ -53,15 +53,17 @@
 
 
     <div class="corpo">
-        <form action="">
-            <h2>LOGIN GESTOR</h2>
-            <input type="text" name="" placeholder="email" id="">
-            <input type="password" name="" placeholder="senha" id="">
+        <form action="@{/recuperarsenhaprofessor}" method = "Post">
+            <h2>RECUPERAR SENHA</h2>
+            <h5>O reset da senha só irá funcionar se o email estiver cadastrado em nosso sistema</h5>
+            <input type="text" name="email" placeholder="email" id="email">
             <div class="container-cad"></div>
-            <input type="submit" name="" value="entrar">
-            <h5><a href="recuperarsenha.html">Esqueceu sua senha?</a></h5>
+            <input class="btn" type="submit" name="" value="enviar">
         </form>
     </div>
+
+    <div class="container-text"></div>
+    <div class="container-text"></div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" 

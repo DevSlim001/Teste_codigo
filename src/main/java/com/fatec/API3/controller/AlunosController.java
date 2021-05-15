@@ -38,6 +38,11 @@ public class AlunosController {
 	private AlunosRepository AR;
 	
 	
+	@GetMapping("/help")
+	public String help(){
+		return "/help/paghelp"; 
+	}  
+	
 	@GetMapping("/index")
 	public String index(){
 		return "index"; 
@@ -60,7 +65,7 @@ public class AlunosController {
 	
 	@GetMapping("/cadastroaluno")
 	public String cadastroaluno(){
-		return "/cadastroaluno";
+		return "/entrada/cadastroaluno";
 	}
 	
 	@PostMapping("/cadastroaluno")
