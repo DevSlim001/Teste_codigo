@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta charset="UTF-8">	  
+<title>Tarefas</title>
+<div class="center" style="margin-left: 380px; margin-top: 30px;">
+    <iframe th:object="${tarefas}"
+        th:src="@{${tarefa.url_form}}" 
+        width="640" height="730" frameborder="0" marginheight="0" marginwidth="0">
+        Carregando…
+    </iframe>
+</div>

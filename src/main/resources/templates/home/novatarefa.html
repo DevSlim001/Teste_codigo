@@ -281,20 +281,21 @@
             <div class="contenedor-perfil">
                 <div class="portada-perfil" style="background-image: url('http://localhost/multimedia/relleno/fondo-9.png');">
                     <div class="sombra"></div>
-                    <form method="post" action="/novatarefa">
+                    <form method="post" th:object="${tarefa}">
                     <div class="datos-perfil">
                         <div class="mb-3">
+                        <br>
                             <label for="exampleFormControlInput1" class="form-label">Nome da Tarefa:</label>
                             <input type="text" class="form-control" id="" placeholder="" name="nome">
 
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descricao"></textarea>
+                                <input type="text" class="form-control" id="" placeholder="" name="descricao">
                             </div>
                             
                             <label for="exampleFormControlInput1" class="form-label">URL da Tarefa:</label>
                             <input type="text" class="form-control" id="" placeholder="" name="url_form">
-                            
+                            <br>
                           <button class="btn btn-outline-light" type="submit">Salvar nova tarefa</button>
                         </div>
                     </div>

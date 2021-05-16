@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../acesso/style.css">
+    
+    <div th:object="${curso}">
+    	<h5><a th:text="${curso.nome}"></a></h5>
+    	<img class="imagem5" th:src="@{/{imagem}(imagem = ${curso.imagem})}" alt="curso1" width="300px"/>
+    	<h5><a th:text="${curso.descricao}"></a></h5>
+    </div>
+    
+
+    <h3>Tarefas</h3>
+    <div th:each="tarefa : ${tarefas}">
+    	<a style="color: black;" th:href="@{/tarefa/{id}(id = ${tarefa.id})}"><span th:text="${tarefa.nome}"></span></a>
+    </div>
+    
+</head>

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -24,9 +25,19 @@ private static final long serialVersionUID = 1L;
 	
 	private String url_form;
 	
+	@ManyToOne
+	private Cursos curso;
+	
 	private String id_curso;
 	
 
+	public Cursos getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Cursos curso) {
+		this.curso = curso;
+	}
 
 	public String getUrl_form() {
 		return url_form;

@@ -52,6 +52,14 @@ public class ProfessorController {
 		return mv;
 	}
 	
+	@RequestMapping("/cursos")
+	public ModelAndView listadeCursos() {
+		ModelAndView mv = new ModelAndView("home/cursos");
+		Iterable<Cursos> cursos = cr.findAll();
+		mv.addObject("cursos", cursos);
+		return mv;
+	}
+	
 	@GetMapping("/{imagem}")
 	@ResponseBody
 	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {

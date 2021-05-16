@@ -200,28 +200,18 @@
 
     <div class="container-text"></div>
 
-    <div class="container">
+    <div class="container" th:each="curso: ${cursos}">
         <div class="card-usuario">
             <div class="seccion-avatar">
                 <div class="avatar">
                     <div class="img-avatar">
-                        <img src="../assets/js.png" alt="">
-                    </div>
-                </div>
-                <div class="datos-redes">
-                    <div class="datos-usuario">
-                        <span>20</span>
-                        <span>Aulas</span>
-                    </div>
-                    <div class="datos-usuario">
-                        <span>180</span>
-                        <span>horas</span>
+                        <img th:src="@{/{imagem}(imagem = ${curso.imagem})}">
                     </div>
                 </div>
             </div>
             <div class="seccion-datos">
-                <h5>JavaScript</h5>
-                <p><i class=""></i> Anderson / FrontEnd</p>
+                <h5><span th:text="${curso.nome}"></span></h5>
+                
                 <!--<div class="botones-redes">
                     <a href="#" class="btn-social facebook">
                         <i class="fab fa-facebook-f"></i>
@@ -234,16 +224,17 @@
                     </a>
                 </div>-->
                 <p class="bio-usuario">
-                    Nesse curso você vai aprender JavaScript do 0 ao avançado de forma
-                    criativa e divertida usando a linguagem ES6.
+                    <span th:text="${curso.descricao}"></span>
                 </p>
                 <div class="container-text"></div>
-                <a href="#" title="">Saiba mais</a>
+                <a th:href="@{/novatarefa/{id}(id = ${curso.id})}">Adicionar Tarefa</a>
             </div>
         </div>
+        <br>
+        <br>
     </div>
 
-    <div class="container-text"></div>
+    <!-- div class="container-text"></div>
     <div class="container">
         <div class="card-usuario">
             <div class="seccion-avatar">
@@ -276,7 +267,7 @@
                     <a href="#" class="btn-social instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                </div>-->
+                </div>
                 <p class="bio-usuario">
                     Nesse curso você vai aprender Html5 do 0 ao avançado de forma
                     criativa e divertida.
@@ -320,7 +311,7 @@
                     <a href="#" class="btn-social instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                </div>-->
+                </div>>
                 <p class="bio-usuario">
                     Nesse curso você vai aprender CSS3 do 0 ao avançado de forma
                     criativa e divertida.
@@ -329,7 +320,7 @@
                 <a href="#" title="">Saiba mais</a>
             </div>
         </div>
-    </div>
+    </div-->
 
     <div class="container-text"></div>
 
