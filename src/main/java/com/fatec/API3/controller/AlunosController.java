@@ -32,7 +32,7 @@ import com.fatec.API3.repository.AlunosRepository;
 @RequestMapping("/")
 public class AlunosController {
 	
-	private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
+	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3";
 	
 	@Autowired
 	private AlunosRepository AR;

@@ -23,10 +23,20 @@ public class Cursos implements  Serializable{
 	@NotEmpty
 	private String descricao;
 	
-	@NotEmpty
 	private String tipo;
 	
 	private String id_prof;
+	
+	private String imagem;
+	
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 
 	public Long getId() {
 		return id;

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
     <title>Professor</title>
     <meta charset="utf-8">
@@ -47,7 +48,7 @@
                               <a class="nav-link" href="#">Meus Cursos</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="/cadastrotarefas">Tarefas</a>
+                              <a class="nav-link" href="/novatarefa">Tarefas</a>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link active">Perfil</a>
@@ -121,21 +122,14 @@
         <div class="container">
           <h2 class="Title">Cursos Disponíveis</h2><br><br>
           <div id="cursosDisp" class="row">
-            <div class="col-sm-4">
-              <a href="#"><img class="imagem5" src="/assets/cursosExemplo.png" alt="curso1" width="300px"></a><br>
-              <p class="Title">Titulo</p>
+            <div th:each="curso: ${cursos}" class="col-sm-4">
+              <a href=""><img class="imagem5" th:src="@{/{imagem}(imagem = ${curso.imagem})}" alt="curso1" width="200px"/></a><br>
+              <a style="color: black;"><span th:text="${curso.nome}"></span></a>
+             </div>
           </div>
-            <div class="col-sm-4">
-              <a href="#"><img class="imagem5" src="/assets/cursosExemplo.png" alt="curso1" width="300px"></a><br>
-              <p class="Title">Titulo</p>
-          </div>
-            <div class="col-sm-4">
-              <a href="#"><img class="imagem5" src="/assets/cursosExemplo.png" alt="curso1" width="300px"></a><br>
-              <p class="Title">Titulo</p>
-          </div>
-          </div>
+          
 
-          <div id="cursosDisp" class="row">
+          <!-- div id="cursosDisp" class="row">
               <div class="col-sm-4">
                 <a href="#"><img class="imagem5" src="/assets/cursosExemplo.png" alt="curso1" width="300px"></a><br>
                 <p class="Title">Titulo</p>
@@ -148,6 +142,7 @@
                 <a href="#"><img class="imagem5" src="/assets/cursosExemplo.png" alt="curso1" width="300px"></a><br>
                 <p class="Title">Titulo</p>
               </div>
+            </div-->
             </div>
 
             <!--link para biblioteca -->

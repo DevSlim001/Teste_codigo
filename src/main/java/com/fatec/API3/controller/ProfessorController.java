@@ -1,5 +1,10 @@
 package com.fatec.API3.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -15,10 +20,15 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.fatec.API3.model.Cursos;
 import com.fatec.API3.model.Professor;
+import com.fatec.API3.repository.CursosRepository;
 import com.fatec.API3.repository.ProfessorRepository;
 
 @Controller
@@ -28,11 +38,28 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorRepository PR;
 	
+	@Autowired
+	private CursosRepository cr;
 	
+	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3";
+
 	
-	@GetMapping("/homeprofessor")
-	public String home(){
-		return "/home/homeprofessor"; 
+	@RequestMapping("/homeprofessor")
+	public ModelAndView listaCursos() {
+		ModelAndView mv = new ModelAndView("home/homeprofessor");
+		Iterable<Cursos> cursos = cr.findAll();
+		mv.addObject("cursos", cursos);
+		return mv;
+	}
+	
+	@GetMapping("/{imagem}")
+	@ResponseBody
+	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
+		File imagemArquivo = new File(caminhoimagens+imagem);
+		if (imagem != null) {
+			return Files.readAllBytes(imagemArquivo.toPath());
+		} 
+		return null;
 	}
 	
 	@GetMapping("/loginprofessor")

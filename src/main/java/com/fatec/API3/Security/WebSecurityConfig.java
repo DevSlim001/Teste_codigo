@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable().authorizeRequests()
 		.antMatchers(HttpMethod.GET,"/index","/div","/divcad", "/recuperarsenha","/recuperarsenhaprofessor", "/cadastroprofessor",
-		"/cadastroaluno", "/help","/loginprofessor")
+		"/cadastroaluno", "/help","/loginprofessor","/")
 		.permitAll()
 		.antMatchers(HttpMethod.POST, "/loginaluno","/loginprofessor","/cadastroaluno","/cadastroprofessor","/recuperarsenha")
 		.permitAll()

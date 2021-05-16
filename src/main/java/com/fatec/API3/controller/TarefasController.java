@@ -14,14 +14,14 @@ public class TarefasController {
 	@Autowired
 	private TarefasRepository tr;
 	
-	@GetMapping("/cadastrotarefa")
+	@GetMapping("/novatarefa")
 	public String cadastro(){
-		return "cadastrotarefa"; 
+		return "home/novatarefa"; 
 	}
 	
-	@PostMapping("/cadastrotarefa")
+	@PostMapping("/novatarefa")
 	public String cadastro(Tarefas tarefa){
 		tr.save(tarefa);
-		return "redirect:/homeprofessor"; 
+		return "redirect:/home/novatarefa"; 
 	}
 }
