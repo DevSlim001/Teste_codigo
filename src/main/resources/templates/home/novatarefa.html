@@ -26,7 +26,7 @@
     <div id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/homeprofessor">
                         <img src="../assets/ness-logo-website.svg" width="150px" class="img-fluid" />
                     </a>
                     <button 
@@ -282,22 +282,30 @@
                 <div class="portada-perfil" style="background-image: url('http://localhost/multimedia/relleno/fondo-9.png');">
                     <div class="sombra"></div>
                     <form method="post" th:object="${tarefa}">
+                    <div class="avatar-perfil">
+                        <img src="" alt="img">
+                        <a class="cambiar-foto">
+                            <input class="fas fa-camera" type="file" style="color:transparent; width:168px;" name="file"/>
+                        </a>
+                    </div>
                     <div class="datos-perfil">
                         <div class="mb-3">
                         <br>
+                        
                             <label for="exampleFormControlInput1" class="form-label">Nome da Tarefa:</label>
-                            <input type="text" class="form-control" id="" placeholder="" name="nome">
+                            <input type="text" class="form-control" id="" placeholder="Nome da tarefa" name="nome">
 
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="" placeholder="" name="descricao">
+                                <input type="text" class="form-control" id="" placeholder="Descrição" name="descricao">
                             </div>
                             
                             <label for="exampleFormControlInput1" class="form-label">URL da Tarefa:</label>
-                            <input type="text" class="form-control" id="" placeholder="" name="url_form">
+                            <input type="text" class="form-control" id="" placeholder="Link do Formulário" name="url_form">
                             <br>
                           <button class="btn btn-outline-light" type="submit">Salvar nova tarefa</button>
                         </div>
+                        
                     </div>
                     </form>
                 </div>

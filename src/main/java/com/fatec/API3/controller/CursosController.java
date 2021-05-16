@@ -74,7 +74,7 @@ public class CursosController {
 			curso.setImagem(caminhopadrao);
 		}
 		cr.save(curso);
-		return "home/novocurso"; 
+		return "home/homeprofessor"; 
 	}
 	
 }
