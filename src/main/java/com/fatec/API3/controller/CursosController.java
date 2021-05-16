@@ -1,6 +1,5 @@
 package com.fatec.API3.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,15 +24,21 @@ import com.fatec.API3.repository.TarefasRepository;
 @Controller
 public class CursosController {
 	
-	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
+	private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
+	//private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
 	
-	private static String caminhopadrao = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\padrao.png";
+	private static String caminhopadrao = "padrao.png";
 
 	@Autowired
 	private CursosRepository cr;
 	
 	@Autowired
 	private TarefasRepository tr;
+	
+	@GetMapping("/cursos")
+	public String cursoscad(){
+		return "/home/cursos"; 
+	}
 	
 	@RequestMapping(value="/novatarefa/{id}", method=RequestMethod.GET)
 	public ModelAndView cadastro(@PathVariable("id") long id){
@@ -57,7 +62,7 @@ public class CursosController {
 	}
 	
 	@PostMapping("/cadastrocurso")
-	public String cadastro(Cursos curso, @RequestParam("file") MultipartFile arquivo, MultipartFile padrao) throws IOException {
+	public String cadastro(Cursos curso, @RequestParam("file") MultipartFile arquivo) throws IOException {
 		if (!arquivo.isEmpty()) {
 			byte[] bytes = arquivo.getBytes();
 			Path caminho = Paths
@@ -65,6 +70,8 @@ public class CursosController {
 			Files.write(caminho, bytes);
 
 			curso.setImagem(arquivo.getOriginalFilename());
+		}else {
+			curso.setImagem(caminhopadrao);
 		}
 		cr.save(curso);
 		return "home/novocurso"; 
