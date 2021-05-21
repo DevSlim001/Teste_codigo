@@ -3,7 +3,6 @@ package com.fatec.API3.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -71,17 +70,18 @@ public class ProfessorController {
 	
 	@GetMapping("/loginprofessor")
 	public String login(){
-		return "/entrada/loginprofessor"; 
+		return "/login"; 
 	}  
 	
 	@PostMapping("/loginprofessor")
 	public String loginprofessor(Professor professor) {
-		Optional<Professor> prof = PR.findByemail(professor.getEmail());
-		if (!prof.isPresent()) {
+		Professor prof = PR.findByemail(professor.getEmail());
+		if (prof == null) {
+			//colocar uma mensagem que não foi achado o email.
 			return "redirect:loginprofessor";
 		}
 		
-		if(!prof.get().getSenha().equals(professor.getSenha())) {
+		if(!prof.getSenha().equals(professor.getSenha())) {
 			return "redirect:loginprofessor";
 		}
 		return "redirect:homeprofessor";
@@ -151,8 +151,8 @@ public class ProfessorController {
 	
 	@PostMapping("/recuperarsenhaprofessor")
 	public String recuperarsenhaprofessorp(Professor professor){
-		Optional<Professor> prof = PR.findByemail(professor.getEmail());
-		if (prof.isPresent()) {
+		Professor prof = PR.findByemail(professor.getEmail());
+		if (prof != null) {
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */
 	    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -186,7 +186,7 @@ public class ProfessorController {
 
 	      message.setRecipients(Message.RecipientType.TO, toUser);
 	      message.setSubject("Recuperação de senha Neduc");//Assunto
-	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + prof.get().getSenha(); 
+	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + prof.getSenha(); 
 	      message.setText(texto);
 	      /**Método para enviar a mensagem criada*/
 	      Transport.send(message);

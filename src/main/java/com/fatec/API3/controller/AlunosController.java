@@ -55,7 +55,7 @@ public class AlunosController {
 	
 	@GetMapping("/div")
 	public String div(){
-		return "div";
+		return "/div";
 	}
 	
 	@GetMapping("/homealuno")
@@ -123,9 +123,9 @@ public class AlunosController {
 		return "redirect:loginaluno";
 	}
 	
-	@GetMapping("/loginaluno")
+	@GetMapping("/login")
 	public String loginaluno(){
-		return "/loginaluno";
+		return "/login";
 	}
 	
 	@PostMapping("/loginaluno")

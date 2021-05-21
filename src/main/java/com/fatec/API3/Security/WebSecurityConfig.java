@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private ImplementsAlunosDetailsService userDetailsService;	
+	private ImplementsUserDetailsService userDetailsService;	
 	
 	
 	@Override
@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.anyRequest().authenticated()
 		.and().formLogin()
-		.loginProcessingUrl("/loginaluno")
-		.loginPage("/loginaluno").defaultSuccessUrl("/homealuno", true).permitAll()
+		.loginProcessingUrl("/login")
+		.loginPage("/login")/*.defaultSuccessUrl("/homealuno", true)*/.permitAll()
         .usernameParameter("email")
         .passwordParameter("senha")
 		.permitAll()
