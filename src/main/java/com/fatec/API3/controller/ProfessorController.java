@@ -15,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,24 +69,6 @@ public class ProfessorController {
 		return null;
 	}
 	
-	@GetMapping("/loginprofessor")
-	public String login(){
-		return "/login"; 
-	}  
-	
-	@PostMapping("/loginprofessor")
-	public String loginprofessor(Professor professor) {
-		Professor prof = PR.findByemail(professor.getEmail());
-		if (prof == null) {
-			//colocar uma mensagem que não foi achado o email.
-			return "redirect:loginprofessor";
-		}
-		
-		if(!prof.getSenha().equals(professor.getSenha())) {
-			return "redirect:loginprofessor";
-		}
-		return "redirect:homeprofessor";
-	}
 	
 	@GetMapping("/cadastroprofessor")
 	public String cadastro(){
@@ -97,6 +80,9 @@ public class ProfessorController {
 	public String cadastroprofessorp(Professor professor){
 		boolean existe = PR.existsByemail(professor.getEmail());
 		if(existe) {return "redirect:cadastroprofessor";}
+		String senha = professor.getSenha();
+		String senhaenc = new BCryptPasswordEncoder().encode(senha);
+		professor.setSenha(senhaenc);
 		//Colocando propriedades para o envio de email.
 				Properties props = new Properties();
 			    /** Parâmetros de conexão com servidor Gmail */
@@ -144,60 +130,7 @@ public class ProfessorController {
 				return "redirect:loginprofessor";
 			}
 	
-	@GetMapping("/recuperarsenhaprofessor")
-	public String recuperarsenhaprofessor(){
-		return "recuperarsenhaprofessor";
-	}
 	
-	@PostMapping("/recuperarsenhaprofessor")
-	public String recuperarsenhaprofessorp(Professor professor){
-		Professor prof = PR.findByemail(professor.getEmail());
-		if (prof != null) {
-		Properties props = new Properties();
-	    /** Parâmetros de conexão com servidor Gmail */
-	    props.put("mail.smtp.host", "smtp.gmail.com");
-	    props.put("mail.smtp.socketFactory.port", "465");
-	    props.put("mail.smtp.socketFactory.class",
-	    "javax.net.ssl.SSLSocketFactory");
-	    props.put("mail.smtp.auth", "true");
-	    props.put("mail.smtp.port", "465");
-
-	    Session session = Session.getInstance(props,
-	      new javax.mail.Authenticator() {
-	           protected PasswordAuthentication getPasswordAuthentication()
-	           {
-	                 return new PasswordAuthentication("timeslim123@gmail.com",
-	                 "@Timeslim321");
-	           }
-	      });
-
-	    /** Ativa Debug para sessão */
-	    session.setDebug(true);
-	    
-	    //Enviando email com os dados revertidos.
-	    try {
-
-	      Message message = new MimeMessage(session);
-	      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
-	      //Remetente
-
-	      Address[] toUser = InternetAddress //Destinatário(s)
-	                 .parse(professor.getEmail());
-
-	      message.setRecipients(Message.RecipientType.TO, toUser);
-	      message.setSubject("Recuperação de senha Neduc");//Assunto
-	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + prof.getSenha(); 
-	      message.setText(texto);
-	      /**Método para enviar a mensagem criada*/
-	      Transport.send(message);
-
-	      System.out.println("Mensagem enviada!!!");
-
-	     } catch (MessagingException e) {
-	        throw new RuntimeException(e);}
-		}
-		return "redirect:loginprofessor";
-	}
 	
 }
 

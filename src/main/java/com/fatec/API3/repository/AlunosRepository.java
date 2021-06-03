@@ -10,5 +10,7 @@ public interface AlunosRepository extends CrudRepository<Alunos, String>{
 	
 	Alunos findByemail(String email);
 	
+	Alunos findBycodigosenha(String codigosenha);
+	
 	boolean existsByemail(String email);
 }

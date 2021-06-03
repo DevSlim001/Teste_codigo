@@ -32,6 +32,8 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty
 	private String email;
 	
+	private String codigosenha;
+	
 	private String nomearquivo;
 	
 	/*Gets e Setters das colunas*/
@@ -90,5 +92,13 @@ private static final long serialVersionUID = 1L;
 
 	public void setNomearquivo(String nomearquivo) {
 		this.nomearquivo = nomearquivo;
+	}
+
+	public String getCodigosenha() {
+		return codigosenha;
+	}
+
+	public void setCodigosenha(String codigosenha) {
+		this.codigosenha = codigosenha;
 	}
 }

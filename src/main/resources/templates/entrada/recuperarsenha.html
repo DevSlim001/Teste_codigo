@@ -53,7 +53,7 @@
 
 
     <div class="corpo">
-        <form action="@{/recuperarsenha}" method = "Post">
+        <form th:action="@{/recuperarsenha}" method = "Post">
             <h2>RECUPERAR SENHA</h2>
             <h5>O reset da senha só irá funcionar se o email estiver cadastrado em nosso sistema</h5>
             <input type="text" name="email" placeholder="email" id="email">

@@ -10,6 +10,7 @@ public interface ProfessorRepository extends CrudRepository<Professor, String> {
 	
 	Professor findByemail(String email);
 	
+	Professor findBycodigosenha(String codigosenha);
 	
 	boolean existsByemail(String email);
 }

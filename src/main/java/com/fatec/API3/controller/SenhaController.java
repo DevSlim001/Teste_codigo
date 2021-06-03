@@ -1,6 +1,7 @@
 package com.fatec.API3.controller;
 
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -12,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,6 +26,7 @@ import com.fatec.API3.repository.AlunosRepository;
 import com.fatec.API3.repository.GestorRepository;
 import com.fatec.API3.repository.ProfessorRepository;
 
+@Controller
 public class SenhaController {
 	
 	@Autowired
@@ -37,18 +40,67 @@ public class SenhaController {
 
 	@GetMapping("/recuperarsenha")
 	public String recuperarsenha(){
-		return "/recuperarsenha";
+		return "/entrada/recuperarsenha";
 	} 
+	
+	@GetMapping("/recuperarsenha/codigo")
+	public String recuperarsenhacodigo() {
+		return "/entrada/codigosenha";
+	}
+
+	@PostMapping("/codigosenha")
+	public String codigosenha(String codigosenha, String email, String senha) {
+		Alunos aluno = AR.findBycodigosenha(codigosenha);
+		Professor professor = PR.findBycodigosenha(codigosenha);
+		Gestor gestor = GR.findBycodigosenha(codigosenha);
+		Administrador adm = ADMR.findBycodigosenha(codigosenha);
+		
+		if (aluno == null && professor == null && gestor == null && adm == null) {
+			return "Código inválido";
+		}
+		
+		if (aluno != null && aluno.getCodigosenha().equals(codigosenha) && aluno.getEmail().equals(email)) {
+			aluno.setSenha(senha);
+			AR.save(aluno);
+			return "/login";
+		}
+		
+		if (professor != null && professor.getCodigosenha().equals(codigosenha) && professor.getEmail().equals(email)) {
+			professor.setSenha(senha);
+			PR.save(professor);
+			return "/login";
+		}
+		
+		if (adm != null && adm.getCodigosenha().equals(codigosenha) && adm.getEmail().equals(email)) {
+			adm.setSenha(senha);
+			ADMR.save(adm);
+			return "/login";
+		}
+		
+		if (gestor != null && gestor.getCodigosenha().equals(codigosenha) && gestor.getEmail().equals(email)) {
+			gestor.setSenha(senha);
+			GR.save(gestor);
+			return "/login";
+		}
+		
+	return null;
+	}
+	
 	@PostMapping("/recuperarsenha")
 	public String recuperarsenha(String email){
+		Random random = new Random();
+		int aleatório = random.nextInt(10000) + 1000;
+		String numero = Integer.toString(aleatório);
 		Alunos aluno = AR.findByemail(email);
 		Professor professor = PR.findByemail(email);
 		Gestor gestor = GR.findByemail(email);
 		Administrador adm = ADMR.findByemail(email);
-		if (aluno == null && professor == null && gestor == null && adm ==null ) {
+		if (aluno == null && professor == null && gestor == null && adm == null ) {
 			return "redirect:index";
 		}
 		if(aluno != null && aluno.getEmail().equals(email)) {
+		aluno.setCodigosenha(numero);
+		AR.save(aluno);
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */
 	    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -76,7 +128,7 @@ public class SenhaController {
 	                 .parse(aluno.getEmail());
 	      message.setRecipients(Message.RecipientType.TO, toUser);
 	      message.setSubject("Recuperação de senha Neduc");//Assunto
-	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + aluno.getSenha(); 
+	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + aluno.getCodigosenha(); 
 	      message.setText(texto);
 	      /**Método para enviar a mensagem criada*/
 	      Transport.send(message);
@@ -84,9 +136,11 @@ public class SenhaController {
 	     } catch (MessagingException e) {
 	        throw new RuntimeException(e);}
 		
-		return "redirect:login";
+		return "/entrada/codigosenha";
 	}
 		if (professor != null && professor.getEmail().equals(email)){
+			professor.setCodigosenha(numero);
+			PR.save(professor);
 			Properties props = new Properties();
 		    /** Parâmetros de conexão com servidor Gmail */
 		    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -114,7 +168,7 @@ public class SenhaController {
 		                 .parse(professor.getEmail());
 		      message.setRecipients(Message.RecipientType.TO, toUser);
 		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + professor.getSenha(); 
+		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + professor.getCodigosenha(); 
 		      message.setText(texto);
 		      /**Método para enviar a mensagem criada*/
 		      Transport.send(message);
@@ -122,9 +176,11 @@ public class SenhaController {
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
 			
-			return "redirect:login";
+		    return "/entrada/codigosenha";
 		}
 		if(adm != null && adm.getEmail().equals(email)){
+			adm.setCodigosenha(numero);
+			ADMR.save(adm);
 			Properties props = new Properties();
 		    /** Parâmetros de conexão com servidor Gmail */
 		    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -152,7 +208,7 @@ public class SenhaController {
 		                 .parse(adm.getEmail());
 		      message.setRecipients(Message.RecipientType.TO, toUser);
 		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + adm.getSenha(); 
+		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + adm.getCodigosenha(); 
 		      message.setText(texto);
 		      /**Método para enviar a mensagem criada*/
 		      Transport.send(message);
@@ -160,9 +216,11 @@ public class SenhaController {
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
 			
-			return "redirect:login";
+		    return "/entrada/codigosenha";
 		}
 		if(gestor != null && gestor.getEmail().equals(email)){
+			gestor.setCodigosenha(numero);
+			GR.save(gestor);
 			Properties props = new Properties();
 		    /** Parâmetros de conexão com servidor Gmail */
 		    props.put("mail.smtp.host", "smtp.gmail.com");
@@ -190,7 +248,7 @@ public class SenhaController {
 		                 .parse(gestor.getEmail());
 		      message.setRecipients(Message.RecipientType.TO, toUser);
 		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + gestor.getSenha(); 
+		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + gestor.getCodigosenha(); 
 		      message.setText(texto);
 		      /**Método para enviar a mensagem criada*/
 		      Transport.send(message);
@@ -198,7 +256,7 @@ public class SenhaController {
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
 			
-			return "redirect:login";
+		    return "/entrada/codigosenha";
 		}
 	return null;
 }

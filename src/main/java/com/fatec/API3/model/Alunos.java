@@ -33,6 +33,8 @@ public class Alunos implements Serializable{
 	@NotEmpty
 	private String email;
 	
+	private String codigosenha;
+	
 	private String nomearquivo;
 	
 	/*Gets e Setters das colunas*/
@@ -92,6 +94,14 @@ public class Alunos implements Serializable{
 
 	public void setNomearquivo(String nomearquivo) {
 		this.nomearquivo = nomearquivo;
+	}
+
+	public String getCodigosenha() {
+		return codigosenha;
+	}
+
+	public void setCodigosenha(String codigosenha) {
+		this.codigosenha = codigosenha;
 	}
 
 	

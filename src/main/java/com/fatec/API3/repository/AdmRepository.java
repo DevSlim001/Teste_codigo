@@ -10,5 +10,7 @@ public interface AdmRepository extends CrudRepository<Administrador, String> {
 	
 	Administrador findByemail(String email);
 	
+	Administrador findBycodigosenha(String codigosenha);
+	
 	boolean existsByemail(String email);
 }

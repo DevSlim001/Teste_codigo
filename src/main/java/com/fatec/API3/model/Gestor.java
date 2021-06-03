@@ -32,7 +32,7 @@ public class Gestor implements Serializable {
 	@NotEmpty
 	private String email;
 	
-	
+	private String codigosenha;
 	
 	/*Gets e Setters das colunas*/
 
@@ -83,6 +83,14 @@ public class Gestor implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCodigosenha() {
+		return codigosenha;
+	}
+
+	public void setCodigosenha(String codigosenha) {
+		this.codigosenha = codigosenha;
 	}
 
 	

@@ -34,6 +34,8 @@ public class Administrador implements Serializable{
 	
 	private String nomearquivo;
 	
+	private String codigosenha;
+	
 	private String novidade;
 	
 	/*Gets e Setters das colunas*/
@@ -101,6 +103,14 @@ public class Administrador implements Serializable{
 
 	public void setNovidade(String novidade) {
 		this.novidade = novidade;
+	}
+
+	public String getCodigosenha() {
+		return codigosenha;
+	}
+
+	public void setCodigosenha(String codigosenha) {
+		this.codigosenha = codigosenha;
 	}
 
 	

@@ -53,10 +53,12 @@
 
 
     <div class="corpo">
-        <form action="@{/recuperarsenhaprofessor}" method = "Post">
+        <form th:action="@{/codigosenha}" method = "Post">
             <h2>RECUPERAR SENHA</h2>
-            <h5>O reset da senha só irá funcionar se o email estiver cadastrado em nosso sistema</h5>
-            <input type="text" name="email" placeholder="email" id="email">
+            <h5>Digite o código recebido em seu email, o seu email e uma nova senha</h5>
+            <input type="text" name="codigosenha" placeholder="Código" id="codigosenha">
+             <input type="text" name="email" placeholder="Email" id="email">
+              <input type="text" name="senha" placeholder="Nova Senha" id="senha">
             <div class="container-cad"></div>
             <input class="btn" type="submit" name="" value="enviar">
         </form>

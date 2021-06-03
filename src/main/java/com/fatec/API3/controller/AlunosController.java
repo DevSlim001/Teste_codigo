@@ -17,6 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,9 +56,9 @@ public class AlunosController {
 	public String cadastroalunop(Alunos alunos){
 		boolean existe = AR.existsByemail(alunos.getEmail());
 		if(existe) {return "Usuário já cadastrado na plataforma.";}
-		//String senha = alunos.getSenha();
-		//String senhaenc = new BCryptPasswordEncoder().encode(senha);
-		//alunos.setSenha(senhaenc);
+		String senha = alunos.getSenha();
+		String senhaenc = new BCryptPasswordEncoder().encode(senha);
+		alunos.setSenha(senhaenc);
 	//Colocando propriedades para o envio de email.
 		Properties props = new Properties();
 	    /** Parâmetros de conexão com servidor Gmail */

@@ -10,5 +10,7 @@ public interface GestorRepository extends CrudRepository<Gestor, String> {
 	
 	Gestor findByemail(String email);
 	
+	Gestor findBycodigosenha(String codigosenha);
+	
 	boolean existsByemail(String email);
 }
