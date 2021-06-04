@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta charset="UTF-8">
+	<div th:object="${usuario}">
+		<h1>Recuperação de Senha Neduc</h1>
+		<h3>Olá! não se preocupe, já cuidei disso para você</h3>
+		<h3>Seu código de recuperação de senha é: <span th:text="*{codigosenha}"></span></h3>
+	</div>
+</html>

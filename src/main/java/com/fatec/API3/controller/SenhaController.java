@@ -15,7 +15,10 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.API3.model.Administrador;
 import com.fatec.API3.model.Alunos;
@@ -261,4 +264,12 @@ public class SenhaController {
 	return null;
 }
 	
+	
+	@RequestMapping("/senhaEmail/{id}")
+	public ModelAndView senhaEmail(@PathVariable("id") long id) {
+		Alunos aluno = AR.findByid(id);
+		ModelAndView mv = new ModelAndView("entrada/testesenha");
+		mv.addObject("usuario", aluno);
+		return mv;
+	}
 }
