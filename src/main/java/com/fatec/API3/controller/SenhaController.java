@@ -6,20 +6,19 @@ import java.util.Random;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-
+import javax.mail.internet.MimeMultipart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.fatec.API3.model.Administrador;
 import com.fatec.API3.model.Alunos;
 import com.fatec.API3.model.Gestor;
@@ -31,6 +30,21 @@ import com.fatec.API3.repository.ProfessorRepository;
 
 @Controller
 public class SenhaController {
+	
+	String email1 = "<html>"
+			+"<meta name='viewport' content='width=device-width, initial scale=1.0'>"
+    		+"<link rel='preconnect' href='https://fonts.gstatic.com'>"
+    		+"<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap' rel='stylesheet'>"
+    		+"<link rel='stylesheet' href='../css/main.css' />"
+			+"<div id=\"header\">\r\n"
+			+ "        <div class=\"container\">\r\n"
+			+ "            <nav class=\"navbar navbar-expand-lg navbar-light justify-content-between\">\r\n"
+			+ "                    <a class=\"navbar-brand\" href=\"https://www.neduc/index\">\r\n"
+			+ "                        <img src=\"https://media-exp1.licdn.com/dms/image/C4D0BAQHQawKedR0znA/company-logo_200_200/0/1585075325806?e=2159024400&v=beta&t=CWVL261R-J4ILmFV_75Q5yxJSoG7fiBgk7jhmcBciII\" width=\"150px\" class=\"img-fluid\" />\r\n"
+			+ "                    </a>"
+			+ "<meta charset='UTF-8'> <h1>Recuperação de Senha Neduc</h1> "
+			+ "<h3>Olá! não se preocupe, já cuidei disso para você</h3> "
+			+ "<h3>Seu código de recuperação de senha é: ";
 	
 	@Autowired
 	private AlunosRepository AR;
@@ -63,25 +77,29 @@ public class SenhaController {
 		}
 		
 		if (aluno != null && aluno.getCodigosenha().equals(codigosenha) && aluno.getEmail().equals(email)) {
-			aluno.setSenha(senha);
+			String senhaenc = new BCryptPasswordEncoder().encode(senha);
+			aluno.setSenha(senhaenc);
 			AR.save(aluno);
 			return "/login";
 		}
 		
 		if (professor != null && professor.getCodigosenha().equals(codigosenha) && professor.getEmail().equals(email)) {
-			professor.setSenha(senha);
+			String senhaenc = new BCryptPasswordEncoder().encode(senha);
+			professor.setSenha(senhaenc);
 			PR.save(professor);
 			return "/login";
 		}
 		
 		if (adm != null && adm.getCodigosenha().equals(codigosenha) && adm.getEmail().equals(email)) {
-			adm.setSenha(senha);
+			String senhaenc = new BCryptPasswordEncoder().encode(senha);
+			adm.setSenha(senhaenc);
 			ADMR.save(adm);
 			return "/login";
 		}
 		
 		if (gestor != null && gestor.getCodigosenha().equals(codigosenha) && gestor.getEmail().equals(email)) {
-			gestor.setSenha(senha);
+			String senhaenc = new BCryptPasswordEncoder().encode(senha);
+			gestor.setSenha(senhaenc);
 			GR.save(gestor);
 			return "/login";
 		}
@@ -124,6 +142,10 @@ public class SenhaController {
 	    session.setDebug(true);
 	    //Enviando email com os dados revertidos.
 	    try {
+	      Multipart multipart = new MimeMultipart();
+	      MimeBodyPart attachment0 = new MimeBodyPart();
+	      attachment0.setContent(email1 + aluno.getCodigosenha(),"text/html; charset=UTF-8");
+	      multipart.addBodyPart(attachment0);
 	      Message message = new MimeMessage(session);
 	      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
 	      //Remetente
@@ -131,8 +153,7 @@ public class SenhaController {
 	                 .parse(aluno.getEmail());
 	      message.setRecipients(Message.RecipientType.TO, toUser);
 	      message.setSubject("Recuperação de senha Neduc");//Assunto
-	      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + aluno.getCodigosenha(); 
-	      message.setText(texto);
+	      message.setContent(multipart);
 	      /**Método para enviar a mensagem criada*/
 	      Transport.send(message);
 	      System.out.println("Mensagem enviada!!!");
@@ -164,17 +185,20 @@ public class SenhaController {
 		    session.setDebug(true);
 		    //Enviando email com os dados revertidos.
 		    try {
-		      Message message = new MimeMessage(session);
-		      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
-		      //Remetente
-		      Address[] toUser = InternetAddress //Destinatário(s)
-		                 .parse(professor.getEmail());
-		      message.setRecipients(Message.RecipientType.TO, toUser);
-		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + professor.getCodigosenha(); 
-		      message.setText(texto);
-		      /**Método para enviar a mensagem criada*/
-		      Transport.send(message);
+		    	Multipart multipart = new MimeMultipart();
+			      MimeBodyPart attachment0 = new MimeBodyPart();
+			      attachment0.setContent(email1 + professor.getCodigosenha(),"text/html; charset=UTF-8");
+			      multipart.addBodyPart(attachment0);
+			      Message message = new MimeMessage(session);
+			      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
+			      //Remetente
+			      Address[] toUser = InternetAddress //Destinatário(s)
+			                 .parse(aluno.getEmail());
+			      message.setRecipients(Message.RecipientType.TO, toUser);
+			      message.setSubject("Recuperação de senha Neduc");//Assunto
+			      message.setContent(multipart);
+			      /**Método para enviar a mensagem criada*/
+			      Transport.send(message);
 		      System.out.println("Mensagem enviada!!!");
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
@@ -204,17 +228,20 @@ public class SenhaController {
 		    session.setDebug(true);
 		    //Enviando email com os dados revertidos.
 		    try {
-		      Message message = new MimeMessage(session);
-		      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
-		      //Remetente
-		      Address[] toUser = InternetAddress //Destinatário(s)
-		                 .parse(adm.getEmail());
-		      message.setRecipients(Message.RecipientType.TO, toUser);
-		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + adm.getCodigosenha(); 
-		      message.setText(texto);
-		      /**Método para enviar a mensagem criada*/
-		      Transport.send(message);
+		    	Multipart multipart = new MimeMultipart();
+			      MimeBodyPart attachment0 = new MimeBodyPart();
+			      attachment0.setContent(email1 + adm.getCodigosenha(),"text/html; charset=UTF-8");
+			      multipart.addBodyPart(attachment0);
+			      Message message = new MimeMessage(session);
+			      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
+			      //Remetente
+			      Address[] toUser = InternetAddress //Destinatário(s)
+			                 .parse(aluno.getEmail());
+			      message.setRecipients(Message.RecipientType.TO, toUser);
+			      message.setSubject("Recuperação de senha Neduc");//Assunto
+			      message.setContent(multipart);
+			      /**Método para enviar a mensagem criada*/
+			      Transport.send(message);
 		      System.out.println("Mensagem enviada!!!");
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
@@ -244,17 +271,20 @@ public class SenhaController {
 		    session.setDebug(true);
 		    //Enviando email com os dados revertidos.
 		    try {
-		      Message message = new MimeMessage(session);
-		      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
-		      //Remetente
-		      Address[] toUser = InternetAddress //Destinatário(s)
-		                 .parse(gestor.getEmail());
-		      message.setRecipients(Message.RecipientType.TO, toUser);
-		      message.setSubject("Recuperação de senha Neduc");//Assunto
-		      String texto = "Olá! não se preocupe, já cuidei disso para você... Sua senha é: " + gestor.getCodigosenha(); 
-		      message.setText(texto);
-		      /**Método para enviar a mensagem criada*/
-		      Transport.send(message);
+		    	Multipart multipart = new MimeMultipart();
+			      MimeBodyPart attachment0 = new MimeBodyPart();
+			      attachment0.setContent(email1 + gestor.getCodigosenha(),"text/html; charset=UTF-8");
+			      multipart.addBodyPart(attachment0);
+			      Message message = new MimeMessage(session);
+			      message.setFrom(new InternetAddress("timeslim123@gmail.com"));
+			      //Remetente
+			      Address[] toUser = InternetAddress //Destinatário(s)
+			                 .parse(aluno.getEmail());
+			      message.setRecipients(Message.RecipientType.TO, toUser);
+			      message.setSubject("Recuperação de senha Neduc");//Assunto
+			      message.setContent(multipart);
+			      /**Método para enviar a mensagem criada*/
+			      Transport.send(message);
 		      System.out.println("Mensagem enviada!!!");
 		     } catch (MessagingException e) {
 		        throw new RuntimeException(e);}
@@ -264,12 +294,4 @@ public class SenhaController {
 	return null;
 }
 	
-	
-	@RequestMapping("/senhaEmail/{id}")
-	public ModelAndView senhaEmail(@PathVariable("id") long id) {
-		Alunos aluno = AR.findByid(id);
-		ModelAndView mv = new ModelAndView("entrada/testesenha");
-		mv.addObject("usuario", aluno);
-		return mv;
-	}
 }

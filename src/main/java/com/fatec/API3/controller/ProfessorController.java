@@ -39,8 +39,8 @@ public class ProfessorController {
 	@Autowired
 	private CursosRepository cr;
 	
-	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3";
-	//private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
+	//private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3";
+	private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
 
 	
 	@RequestMapping("/homeprofessor")
