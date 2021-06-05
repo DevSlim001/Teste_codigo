@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.API3.model.Cursos;
 import com.fatec.API3.model.Tarefas;
+import com.fatec.API3.model.Videos;
 import com.fatec.API3.repository.CursosRepository;
 import com.fatec.API3.repository.TarefasRepository;
+import com.fatec.API3.repository.VideosRepository;
 
 @Controller
 public class TarefasController {
@@ -21,6 +23,10 @@ public class TarefasController {
 	@Autowired
 	private CursosRepository cr;
 	
+	@Autowired
+	private VideosRepository vr;
+	
+	
 	@RequestMapping(value="/detalhes/{id}", method=RequestMethod.GET)
 	public ModelAndView detalhes(@PathVariable("id") long id){
 		Cursos curso = cr.findByid(id);
@@ -28,9 +34,11 @@ public class TarefasController {
 		mv.addObject("curso", curso);
 		Iterable<Tarefas> tarefas = tr.findByCurso(curso);
 		mv.addObject("tarefas", tarefas);
+		Iterable<Videos> videos = vr.findByCurso(curso);
+		mv.addObject("videos", videos);
 		return mv;
 	}
-	
+
 	
 	@RequestMapping(value="/tarefa/{id}", method=RequestMethod.GET)
 	public ModelAndView verTarefa(@PathVariable("id") long id) {

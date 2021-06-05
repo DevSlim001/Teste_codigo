@@ -57,14 +57,13 @@
                     </div>
             </nav>
         </div>
-    </div>
-
-<div class="center" style="margin-left: 380px; margin-top: 30px;">
-    <iframe th:object="${tarefas}"
-        th:src="@{${tarefa.url_form}}" 
-        width="640" height="730" frameborder="0" marginheight="0" marginwidth="0">
-        Carregando…
-    </iframe>
 </div>
+
+
+	<div style="margin-left: 500px; margin-top: 30px;" th:object="${videos}">
+			<video autoplay="autoplay" controls>
+	    		<source th:src="@{/video/{video}(video = ${video.video})}" type="video/mp4">
+			</video>
+	</div>
 
 </body>

@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.API3.model.Cursos;
 import com.fatec.API3.model.Tarefas;
+import com.fatec.API3.model.Videos;
 import com.fatec.API3.repository.CursosRepository;
 import com.fatec.API3.repository.TarefasRepository;
+import com.fatec.API3.repository.VideosRepository;
 
 @Controller
 public class CursosController {
@@ -35,10 +37,37 @@ public class CursosController {
 	@Autowired
 	private TarefasRepository tr;
 	
+	@Autowired
+	private VideosRepository vr;
+	
 	@GetMapping("/cursos")
 	public String cursoscad(){
 		return "/home/cursos"; 
 	}
+	
+	@RequestMapping(value="/novovideo/{id}", method=RequestMethod.GET)
+	public ModelAndView cadastrovideo(@PathVariable("id") long id) {
+		Cursos curso = cr.findByid(id);
+		ModelAndView mv = new ModelAndView("home/novovideo");
+		mv.addObject("curso", curso);
+		return mv;
+	}
+	
+	@PostMapping(value="/novovideo/{id}")
+	public String cadastrovideo(@PathVariable("id") long id, Videos video, @RequestParam("file") MultipartFile arquivo) throws IOException {
+		byte[] bytes = arquivo.getBytes();
+		Path caminho = Paths
+				.get(caminhoimagens + arquivo.getOriginalFilename());
+		Files.write(caminho, bytes);
+
+		video.setVideo(arquivo.getOriginalFilename());
+
+		Cursos curso = cr.findByid(id);
+		video.setCurso(curso);
+		vr.save(video);
+		return "home/homeprofessor";
+	}
+	
 	
 	@RequestMapping(value="/novatarefa/{id}", method=RequestMethod.GET)
 	public ModelAndView cadastro(@PathVariable("id") long id){
