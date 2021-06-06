@@ -59,10 +59,10 @@
         </div>
 </div>
 
-
-	<div style="margin-left: 500px; margin-top: 30px;" th:object="${videos}">
+	<!-- ERRO AQUI -->
+	<div style= "margin-left: 500px; margin-top: 30px;" th:object="${video}">
 			<video autoplay="autoplay" controls>
-	    		<source th:src="@{/video/{video}(video = ${video.video})}" type="video/mp4">
+	    		<source th:src="@{/videoarquivo/{video}(video = ${video.video})}" type="video/mp4">
 			</video>
 	</div>
 

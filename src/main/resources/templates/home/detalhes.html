@@ -208,7 +208,7 @@ xmlns:th="http://www.thymeleaf.org">
     <br>
     <h3>Vídeos</h3>
     <div th:each="video : ${videos}">
-    	<a style="color: black;" th:href="@{/video/{video}(video = ${video.video})}"><span th:text="${video.nome}"></span></a>
+    	<a style="color: black;" th:href="@{/video/{id}(id = ${video.id})}"><span th:text="${video.nome}"></span></a>
     </div>
     
     

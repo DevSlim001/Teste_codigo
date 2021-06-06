@@ -65,7 +65,7 @@ public class CursosController {
 		Cursos curso = cr.findByid(id);
 		video.setCurso(curso);
 		vr.save(video);
-		return "home/homeprofessor";
+		return "redirect:/homeprofessor";
 	}
 	
 	
