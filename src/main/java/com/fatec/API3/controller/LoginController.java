@@ -1,6 +1,7 @@
 package com.fatec.API3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,33 +44,34 @@ public class LoginController {
 		Professor professor = PR.findByemail(email);
 		Gestor gestor = GR.findByemail(email);
 		Administrador adm = ADMR.findByemail(email);
+		String senhaenc = new BCryptPasswordEncoder().encode(senha);
 		
 		if(aluno == null && professor == null && gestor == null && adm == null) {
 			return "Nenhum usuário com esse email foi encontrado";
 		}
 		
-		if(aluno != null && aluno.getEmail().equals(email) && aluno.getSenha().equals(senha)) {
+		if(aluno != null && aluno.getEmail().equals(email) && aluno.getSenha().equals(senhaenc)) {
 			Usuario.tipoUsu = "aluno";
 			Usuario.idUsu = aluno.getId();
 			Usuario.nomeUsu = aluno.getNome();
 			return "redirect:homealuno";
 		}
 		
-		if (professor != null && professor.getEmail().equals(email) && professor.getSenha().equals(senha)) {
+		if (professor != null && professor.getEmail().equals(email) && professor.getSenha().equals(senhaenc)) {
 			Usuario.tipoUsu = "professor";
 			Usuario.idUsu = professor.getId();
 			Usuario.nomeUsu = professor.getNome();
 			return "redirect:homeprofessor";
 		}
 		
-		if(adm != null && adm.getEmail().equals(email) && adm.getSenha().equals(senha)) {
+		if(adm != null && adm.getEmail().equals(email) && adm.getSenha().equals(senhaenc)) {
 			Usuario.tipoUsu = "ADM";
 			Usuario.idUsu = adm.getId();
 			Usuario.nomeUsu = adm.getNome();
 			return "redirect:homeadm";
 		}
 		
-		if(gestor != null && gestor.getEmail().equals(email) && gestor.getSenha().equals(senha)) {
+		if(gestor != null && gestor.getEmail().equals(email) && gestor.getSenha().equals(senhaenc)) {
 			Usuario.tipoUsu = "gestor";
 			Usuario.idUsu = gestor.getId();
 			Usuario.nomeUsu = gestor.getNome();

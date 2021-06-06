@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 public class Administrador implements Serializable{
 	
@@ -34,6 +36,7 @@ public class Administrador implements Serializable{
 	
 	private String nomearquivo;
 	
+	@Nullable
 	private String codigosenha;
 	
 	private String novidade;

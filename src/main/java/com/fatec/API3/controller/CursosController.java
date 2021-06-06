@@ -26,8 +26,8 @@ import com.fatec.API3.repository.VideosRepository;
 @Controller
 public class CursosController {
 	
-	//private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
-	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
+	private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
+	//private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
 	
 	private static String caminhopadrao = "padrao.png";
 

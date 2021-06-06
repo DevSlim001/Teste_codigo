@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fatec.API3.model.Alunos;
 import com.fatec.API3.model.Cursos;
 import com.fatec.API3.model.Professor;
+import com.fatec.API3.repository.AlunosRepository;
 import com.fatec.API3.repository.CursosRepository;
 import com.fatec.API3.repository.ProfessorRepository;
 
@@ -39,9 +41,22 @@ public class ProfessorController {
 	@Autowired
 	private CursosRepository cr;
 	
-	private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
-	//private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
+	@Autowired
+	private AlunosRepository ar;
+	
+	//private static String caminhoimagens = "C:\\Users\\kiabi\\OneDrive\\Documentos\\Imagens_API3\\";
+	private static String caminhoimagens = "C:\\Users\\Pichau\\Documents\\Imagens_API3\\";
 
+	
+	@RequestMapping("/gerarcertificadog")
+	public ModelAndView gerarpdf() {
+		ModelAndView mv = new ModelAndView ("/home/gerarcertificado");
+		Iterable<Alunos> alunos = ar.findAll();
+		mv.addObject("alunos", alunos);
+		Iterable<Cursos> cursos = cr.findAll();
+		mv.addObject("cursos", cursos);
+		return mv;
+	}
 	
 	@RequestMapping("/homeprofessor")
 	public ModelAndView listaCursos() {

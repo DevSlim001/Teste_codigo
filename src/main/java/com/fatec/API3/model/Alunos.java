@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.lang.Nullable;
+
 
 @Entity
 public class Alunos implements Serializable{
@@ -33,6 +35,7 @@ public class Alunos implements Serializable{
 	@NotEmpty
 	private String email;
 	
+	@Nullable
 	private String codigosenha;
 	
 	private String nomearquivo;

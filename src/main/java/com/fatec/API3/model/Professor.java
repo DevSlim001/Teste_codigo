@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 public class Professor implements  Serializable{
 private static final long serialVersionUID = 1L;
@@ -32,6 +34,7 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty
 	private String email;
 	
+	@Nullable
 	private String codigosenha;
 	
 	private String nomearquivo;

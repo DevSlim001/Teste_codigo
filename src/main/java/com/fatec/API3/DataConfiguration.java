@@ -18,8 +18,8 @@ public class DataConfiguration {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/neduc?useTimezone=true&serverTimezone=America/Sao_Paulo");
         dataSource.setUsername("root");
-        dataSource.setPassword("aluno@etep");
-        //dataSource.setPassword("789456123");
+        //dataSource.setPassword("aluno@etep");
+        dataSource.setPassword("789456123");
         return dataSource;
     }
 	

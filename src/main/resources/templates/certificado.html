@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head>
+<style type="text/css">
+  .moldura-dois {
+	width: 404px; 
+	border:8px inset #5f6632;
+	padding:15px;
+	background: #b1b1c3;
+	}
+
+	.moldura-um {
+	width: 480px; /*404+8+8(bordas)+15+15(paddings)*/
+	border:20px inset #5d738b;
+	padding:35px;
+	background: transparent url(/bg-um.gif);
+	}
+  </style>
+</head>
+  <body>
+  	<div class="moldura-um">
+  	<div class="moldura-dois">
+  	<div>
+  		<h1 style="text-align: center; color: black">
+  			CERTIFICADO DE CONCLUSÃO
+  		</h1>
+  		<h3 style="text-align: center; color: black">
+  		<span th:text="'A nEDUC certifica que o aluno ' + ${nome}"></span>
+  		</h3>
+    	<h3 style="text-align: center; color: black">
+      	<span th:text="' concluiu o curso de ' + ${curso} + '!'"></span>
+    	</h3>
+    </div>
+    </div>
+   </div>
+  </body>
+</html>

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 public class Gestor implements Serializable {
 
@@ -32,6 +34,7 @@ public class Gestor implements Serializable {
 	@NotEmpty
 	private String email;
 	
+	@Nullable
 	private String codigosenha;
 	
 	/*Gets e Setters das colunas*/
