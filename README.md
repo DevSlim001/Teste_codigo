@@ -105,7 +105,7 @@ Pensando nas pessoas que poderiam ter alguma dificuldade na utilização da plat
 - [x] Primeira Sprint - 28/03/2021
 - [x] Segunda Sprint  - 18/04/2021
 - [x] Terceira Sprint - 16/05/2021
-- [x] Quarta Sprint   - à confirmar
+- [x] Quarta Sprint   - 06/06/2021
 
 -----------------
 
