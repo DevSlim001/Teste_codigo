@@ -44,34 +44,34 @@ public class LoginController {
 		Professor professor = PR.findByemail(email);
 		Gestor gestor = GR.findByemail(email);
 		Administrador adm = ADMR.findByemail(email);
-		String senhaenc = new BCryptPasswordEncoder().encode(senha);
+		//String senhaenc = new BCryptPasswordEncoder().encode(senha);
 		
 		if(aluno == null && professor == null && gestor == null && adm == null) {
 			return "Nenhum usuário com esse email foi encontrado";
 		}
 		
-		if(aluno != null && aluno.getEmail().equals(email) && aluno.getSenha().equals(senhaenc)) {
+		if(aluno != null && aluno.getEmail().equals(email) && aluno.getSenha().equals(senha)) {
 			Usuario.tipoUsu = "aluno";
 			Usuario.idUsu = aluno.getId();
 			Usuario.nomeUsu = aluno.getNome();
 			return "redirect:homealuno";
 		}
 		
-		if (professor != null && professor.getEmail().equals(email) && professor.getSenha().equals(senhaenc)) {
+		if (professor != null && professor.getEmail().equals(email) && professor.getSenha().equals(senha)) {
 			Usuario.tipoUsu = "professor";
 			Usuario.idUsu = professor.getId();
 			Usuario.nomeUsu = professor.getNome();
 			return "redirect:homeprofessor";
 		}
 		
-		if(adm != null && adm.getEmail().equals(email) && adm.getSenha().equals(senhaenc)) {
+		if(adm != null && adm.getEmail().equals(email) && adm.getSenha().equals(senha)) {
 			Usuario.tipoUsu = "ADM";
 			Usuario.idUsu = adm.getId();
 			Usuario.nomeUsu = adm.getNome();
 			return "redirect:homeadm";
 		}
 		
-		if(gestor != null && gestor.getEmail().equals(email) && gestor.getSenha().equals(senhaenc)) {
+		if(gestor != null && gestor.getEmail().equals(email) && gestor.getSenha().equals(senha)) {
 			Usuario.tipoUsu = "gestor";
 			Usuario.idUsu = gestor.getId();
 			Usuario.nomeUsu = gestor.getNome();

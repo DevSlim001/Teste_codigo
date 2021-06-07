@@ -22,6 +22,7 @@ import com.fatec.API3.model.Cursos;
 import com.fatec.API3.model.Novidades;
 import com.fatec.API3.repository.AlunosRepository;
 import com.fatec.API3.repository.CursosRepository;
+import com.fatec.API3.repository.NovidadesRepository;
 
 @Controller
 public class AdmController {

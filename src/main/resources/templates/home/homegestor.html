@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Administrador</title>
+    <title>Gestor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -70,7 +70,7 @@
           
             <div class="container" th:each="novidade: ${novidades}">
             	<div class="img-avatar">
-                	<img th:src="@{/{novidade}(novidade = ${novidade.imagem})}">
+                	<img th:src="@{/{novidade}(novidade = ${novidade.imagem})}" width="420px">
                 </div>
                 </div>
             <br>
@@ -80,7 +80,7 @@
        <br><hr width="100%" style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
             
             <div class="container-text"></div>
-                <h2 class="Title">Cursos</h2><br><br>
+                <h2 class="Title">Pílulas</h2><br><br>
                 <div id="cursosDisp" class="row">
             	<div th:each="curso: ${cursos}" class="col-sm-4">
               <img class="imagem5" th:src="@{/curso/{imagem}(imagem = ${curso.imagem})}" alt="curso1" width="200px"/>

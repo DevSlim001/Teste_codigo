@@ -1,4 +1,4 @@
-package com.fatec.API3.controller;
+package com.fatec.API3.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
